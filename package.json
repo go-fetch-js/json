@@ -1,0 +1,23 @@
+{
+  "name": "go-fetch-json",
+  "version": "1.0.0",
+  "description": "A plugin for `go-fetch` that makes working with JSON easier.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:go-fetch-js/json.git"
+  },
+  "dependencies": {
+    "type-is": "^1.6.12"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.2.0",
+    "mocha": "^2.4.5",
+    "sinon": "^1.17.3",
+    "string-to-stream": "^1.0.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "license": "MIT"
+}
