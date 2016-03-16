@@ -215,7 +215,7 @@ describe('go-fetch-json', () => {
 
     describe('.toJSON()', () => {
 
-      it('should return true when the content-type and content-length headers are set', () => {
+      it('should return true when the content-type is application/json and content-length is set', () => {
 
         const response = new Response({headers: {'content-type': 'application/json', 'content-length': 20}});
         const next = sinon.spy();
@@ -226,7 +226,18 @@ describe('go-fetch-json', () => {
 
       });
 
-      it('should return false when the content-type header is not JSON', () => {
+      it('should return true when the content-type is application/vnd.api+json and content-length is set', () => {
+
+        const response = new Response({headers: {'content-type': 'application/vnd.api+json', 'content-length': 20}});
+        const next = sinon.spy();
+
+        json.afterMiddleware(response, next);
+
+        expect(response.isJSON()).to.be.true;
+
+      });
+
+      it('should return false when the content-type is not JSON', () => {
 
         const response = new Response({headers: {'content-type': 'text/html', 'content-length': 20}});
         const next = sinon.spy();
@@ -237,7 +248,7 @@ describe('go-fetch-json', () => {
 
       }); 
 
-      it('should return false when the content-type header is not set', () => {
+      it('should return false when the content-type is not set', () => {
 
         const response = new Response({headers: {'content-length': 20}});
         const next = sinon.spy();
@@ -248,7 +259,7 @@ describe('go-fetch-json', () => {
 
       });
 
-      it('should return true when the content-length header is not set', () => {
+      it('should return false when the content-length is not set', () => {
 
         const response = new Response({headers: {'content-type': 'application/json'}});
         const next = sinon.spy();

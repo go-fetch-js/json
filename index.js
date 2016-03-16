@@ -6,7 +6,8 @@ function isLiteralObject(val) {
 }
 
 function isJSON() {
-  return isType(this, ['json']) === 'json'
+  const type = isType(this, ['json', '+json']);
+  return type !== null && type !== false
 }
 
 function json() {
